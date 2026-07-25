@@ -392,7 +392,7 @@ MYSON_ART = r"""
 
 async def help_handler(client, message):
     text = """
-🔥 **KING USERBOT COMMANDS** 🔥
+🔥 **CHERRY USERBOT COMMANDS** 🔥
 
 🐱 `.cat` - Cute Cat Animation
 🌹 `.rose` - Rose Animation
