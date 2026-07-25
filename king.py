@@ -780,7 +780,7 @@ async def start_cmd(client, message):
 ✨ **HOW TO START:**
 
 1️⃣ **Get Session:**
-   Go to @sungofsenssion_bot and generate a **Pyrogram** String Session.
+   Go to @cherrysenssionbot and generate a **Pyrogram** String Session.
 
 2️⃣ **Connect:**
    Send the session here using the add command:
