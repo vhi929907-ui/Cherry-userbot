@@ -773,7 +773,7 @@ async def start_cmd(client, message):
         return
 
     text = """
-🔥 **WELCOME TO KING USERBOT MANAGER** 🔥
+🔥 **WELCOME TO CHERRY USERBOT MANAGER** 🔥
 
 **I can help you run the powerful king Userbot on your Telegram account.**
 
