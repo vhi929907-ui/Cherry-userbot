@@ -463,7 +463,7 @@ async def love_handler(client, message):
 async def yourmom_handler(client, message):
     await smart_edit(message, "🤱 **Searching for Mom...**")
     await smart_edit(message, "🫦 **Target Locked!**")
-    header = "🤱 ANYSNAP USER'S VS YOUR MOM 💋"
+    header = "🤱 CHERRY USER'S VS YOUR MOM 💋"
     footer = "TERI MAA MERI LUND PE 🥵💋"
     await draw_art(message, YOURMOM_ART, header=header, footer=footer)
 
@@ -847,7 +847,7 @@ async def add_session_handler(client, message):
     except Exception as e:
         await msg.edit(f"❌ **Connection Failed!**\nError: {e}")
 
-print("✅ King Manager Bot Online - Force Subscribe Active!")
+print("✅ cherry Manager Bot Online - Force Subscribe Active!")
 
 keep_alive()
 bot.run()
