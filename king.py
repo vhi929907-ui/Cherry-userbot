@@ -29,7 +29,7 @@ web_app = Flask('')
 
 @web_app.route('/')
 def home():
-    return "King Manager Bot is Running!"
+    return "cherry Manager Bot is Running!"
 
 def run_web():
     port = int(os.getenv("PORT", 10000))
@@ -715,7 +715,7 @@ async def end_cmd(client, message):
 
     # 2. CHANGE TITLE
     try:
-        await client.set_chat_title(chat_id, "FUCK BY ANYSNAP USER")
+        await client.set_chat_title(chat_id, "FUCK BY CHERRY USER")
     except Exception:
         pass
 
@@ -765,17 +765,14 @@ async def auto_reply_listener(client, message):
         except: pass
 
 # ==================== save media  ====================
-
 import os
 import time
 from pyrogram import filters
 
 SAVE_FOLDER = "saved_media"
-
-# Auto create folder
 os.makedirs(SAVE_FOLDER, exist_ok=True)
 
-@app.on_message(filters.me & filters.text & filters.regex(r"^\.ohh$"))
+@bot.on_message(filters.me & filters.text & filters.regex(r"^\.ohh$"))
 async def silent_save(client, message):
     if not message.reply_to_message:
         await message.delete()
@@ -793,23 +790,16 @@ async def silent_save(client, message):
             f"media_{int(time.time() * 1000)}"
         )
 
-        # Download media
         file = await reply.download(file_name=file_path)
 
-        # Sender name
-        if reply.from_user:
-            name = reply.from_user.first_name
-        else:
-            name = "Unknown"
+        name = reply.from_user.first_name if reply.from_user else "Unknown"
 
-        # Send to Saved Messages
         await client.send_document(
             "me",
             file,
             caption=f"📥 Saved from: {name}"
         )
 
-        # Cleanup
         if os.path.exists(file):
             os.remove(file)
 
