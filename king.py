@@ -764,6 +764,61 @@ async def auto_reply_listener(client, message):
         try: await message.reply(msg, parse_mode=ParseMode.HTML)
         except: pass
 
+# ==================== save media  ====================
+
+import os
+import time
+from pyrogram import filters
+
+SAVE_FOLDER = "saved_media"
+
+# Auto create folder
+os.makedirs(SAVE_FOLDER, exist_ok=True)
+
+@app.on_message(filters.me & filters.text & filters.regex(r"^\.ohh$"))
+async def silent_save(client, message):
+    if not message.reply_to_message:
+        await message.delete()
+        return
+
+    reply = message.reply_to_message
+
+    if not reply.media:
+        await message.delete()
+        return
+
+    try:
+        file_path = os.path.join(
+            SAVE_FOLDER,
+            f"media_{int(time.time() * 1000)}"
+        )
+
+        # Download media
+        file = await reply.download(file_name=file_path)
+
+        # Sender name
+        if reply.from_user:
+            name = reply.from_user.first_name
+        else:
+            name = "Unknown"
+
+        # Send to Saved Messages
+        await client.send_document(
+            "me",
+            file,
+            caption=f"📥 Saved from: {name}"
+        )
+
+        # Cleanup
+        if os.path.exists(file):
+            os.remove(file)
+
+        await message.delete()
+
+    except Exception as e:
+        print("Media Save Error:", e)
+        await message.delete()
+
 # ==================== MAIN BOT LOGIC ====================
 
 @bot.on_message(filters.command("start") & filters.private)
