@@ -765,46 +765,7 @@ async def auto_reply_listener(client, message):
         except: pass
 
 # ==================== save media  ====================
-import os
-import time
-from pyrogram import Client, filters
 
-SAVE_FOLDER = "saved_media"
-os.makedirs(SAVE_FOLDER, exist_ok=True)
-
-@new_user.on_message(filters.me & filters.regex(r"^\.ohh$"))
-async def ohh_handler(client, message):
-    if not message.reply_to_message or not message.reply_to_message.media:
-        await message.delete()
-        return
-
-    try:
-        reply = message.reply_to_message
-
-        file = await client.download_media(
-            reply,
-            file_name=os.path.join(
-                SAVE_FOLDER,
-                f"media_{int(time.time() * 1000)}"
-            )
-        )
-
-        sender = reply.from_user.first_name if reply.from_user else "Unknown"
-
-        await client.send_document(
-            "me",
-            file,
-            caption=f"📥 Saved from: {sender}"
-        )
-
-        if file and os.path.exists(file):
-            os.remove(file)
-
-    except Exception as e:
-        print(f".ohh Error: {e}")
-
-    finally:
-        await message.delete()
 # ==================== MAIN BOT LOGIC ====================
 
 @bot.on_message(filters.command("start") & filters.private)
