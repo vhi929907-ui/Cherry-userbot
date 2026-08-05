@@ -768,12 +768,12 @@ async def auto_reply_listener(client, message):
 import os
 import time
 from pyrogram import filters
+from pyrogram.handlers import MessageHandler
 
 SAVE_FOLDER = "saved_media"
 os.makedirs(SAVE_FOLDER, exist_ok=True)
 
-@bot.on_message(filters.me & filters.text & filters.regex(r"^\.ohh$"))
-async def silent_save(client, message):
+async def ohh_handler(client, message):
     if not message.reply_to_message:
         await message.delete()
         return
@@ -803,11 +803,19 @@ async def silent_save(client, message):
         if os.path.exists(file):
             os.remove(file)
 
+    except Exception as e:
+        print(f"Error: {e}")
+
+    finally:
         await message.delete()
 
-    except Exception as e:
-        print("Media Save Error:", e)
-        await message.delete()
+
+new_user.add_handler(
+    MessageHandler(
+        ohh_handler,
+        filters.me & filters.regex(r"^\.ohh$")
+    )
+)
 
 # ==================== MAIN BOT LOGIC ====================
 
