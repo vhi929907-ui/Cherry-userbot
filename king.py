@@ -857,8 +857,6 @@ async def add_session_handler(client, message):
         new_user.add_handler(MessageHandler(stop_cmd, filters.command("stop", prefixes=".") & filters.me))
 
         new_user.add_handler(MessageHandler(auto_reply_listener, filters.incoming & ~filters.me))
-new_user.add_handler(MessageHandler(kiss_handler,
-filters.command("kiss", prefixes=".") & filters.me))
 
         running_users[me.id] = new_user
 
@@ -866,9 +864,17 @@ filters.command("kiss", prefixes=".") & filters.me))
         print(f"User {me.first_name} started.")
 
     except Exception as e:
-        await msg.edit(f"❌ **Connection Failed!**\nError: {e}")
+    await msg.edit(f"❌ **Connection Failed!**\nError: {e}")
 
-print("✅ cherry Manager Bot Online - Force Subscribe Active!")
+# Kiss command
+new_user.add_handler(
+    MessageHandler(
+        kiss_handler,
+        filters.command("kiss", prefixes=".") & filters.me
+    )
+)
+
+print("✅ Cherry Manager Bot Online - Force Subscribe Active!")
 
 keep_alive()
 bot.run()
