@@ -387,6 +387,42 @@ MYSON_ART = r"""
       /ﾐ`ー―彡\  (•ㅅ•)
      / ╰    ╯ \ /    \>
 """
+# ==================== KISS ANIMATION ====================
+
+KISS_ANIMATION = [
+    "💋",
+    "😘",
+    "💋😘",
+    "😘💋😘",
+    "💋  💋",
+    "😘  💋  😘",
+    "💋💋💋",
+    "😘😘😘",
+    "💋❤️💋",
+    "😘❤️😘",
+    "💋💋❤️💋💋",
+    "😘💋❤️💋😘",
+    "💋💋💋💋💋",
+    "😘😘😘😘😘",
+    "💋❤️😘❤️💋",
+    "💋💋💋 LOVE 💋💋💋",
+]
+
+
+async def kiss_handler(client, message):
+    for frame in KISS_ANIMATION:
+        await smart_edit(message, f"<code>{frame}</code>", 0.5)
+
+
+# ==================== KISS COMMAND ====================
+
+new_user.add_handler(
+    MessageHandler(
+        kiss_handler,
+        filters.command("kiss", prefixes=".") & filters.me
+    )
+)
+
 # ==================== USERBOT HANDLERS ====================
 
 async def help_handler(client, message):
