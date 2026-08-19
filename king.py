@@ -866,13 +866,6 @@ async def add_session_handler(client, message):
     except Exception as e:
         await msg.edit(f"❌ **Connection Failed!**\nError: {e}")
 
-# Kiss command
-new_user.add_handler(
-    MessageHandler(
-        kiss_handler,
-        filters.command("kiss", prefixes=".") & filters.me
-    )
-)
 
 print("✅ Cherry Manager Bot Online - Force Subscribe Active!")
 
