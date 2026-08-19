@@ -860,7 +860,8 @@ async def add_session_handler(client, message):
                 filters.command("kiss", prefixes=".") & filters.me
             )
         )       
-new_user.add_handler(MessageHandler(stop_cmd, filters.command("stop", prefixes=".") & filters.me))
+        new_user.add_handler(MessageHandler(stop_cmd,
+            filters.command("stop", prefixes=".") & filters.me))
 
         new_user.add_handler(MessageHandler(auto_reply_listener, filters.incoming & ~filters.me))
 
