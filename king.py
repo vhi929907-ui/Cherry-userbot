@@ -864,7 +864,7 @@ async def add_session_handler(client, message):
         print(f"User {me.first_name} started.")
 
     except Exception as e:
-    await msg.edit(f"❌ **Connection Failed!**\nError: {e}")
+        await msg.edit(f"❌ **Connection Failed!**\nError: {e}")
 
 # Kiss command
 new_user.add_handler(
