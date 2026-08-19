@@ -260,27 +260,27 @@ async def run_spam(client, chat_id, mention, count):
     active_spams[chat_id] = False
 
 # ==================== ART ASSETS ====================
-KISS_ANIMATION = [
-    "⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣴⣦⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀",
-    "⠀⠀⠀⠀⣠⣴⠾⠛⠉⠉⠀⠀⠀⠀⠈⠉⠛⠿⣦⣄⠀⠀⠀⠀⠀",
-    "⠀⠀⣠⣾⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢷⣄⠀⠀⠀",
-    "⠀⣰⡟⠁⠀⢀⣤⠤⠤⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣧⠀⠀",
-    "⣰⡟⠀⠀⠴⠋⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⣤⣄⡀⠀⠀⠀⢻⣧⠀",
-    "⣿⠃⠀⠀⠀⢠⣶⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢆⠀⠀⠈⣿⡀",
-    "⣿⠀⠀⠀⠀⢸⣿⣿⠇⠀⠀⠀⠀⠀⠚⠛⠛⠳⠄⠀⠀⠀⠀⣿⡇",
-    "⣿⡄⠀⠀⠀⠀⠉⠁⠀⠀⢀⣀⣀⠀⠀⠀⣠⠤⢤⡀⢀⣀⠀⣿⠃",
-    "⠹⣧⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⣹⡷⠀⢰⠃⠀⠀⠹⠉⠈⠙⡟⠀",
-    "⠀⠻⣧⡀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣄⠀⠈⢧⠀⠀⠀⠀⠀⣠⠇⠀",
-    "⠀⠀⠙⢷⣄⡀⠀⠀⠀⠀⢠⡶⠿⠋⠀⠀⠈⠳⣄⣀⣤⠞⠁⠀⠀",
-    "⠀⠀⠀⠀⠙⠻⣶⣤⣀⡀⠀⠀⠀⠀⠀⣀⣠⣴⠿⠋⠁⠀⠀⠀⠀",
-    "⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠛⠿⠿⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀",
-    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
-    "💋", "😘", "💋❤️😘", "😘❤️💋", "💋💋❤️💋💋", "😘😘💋😘😘"
-]
+KISS_ART = r"""
+⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣴⣦⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣠⣴⠾⠛⠉⠉⠀⠀⠀⠀⠈⠉⠛⠿⣦⣄⠀⠀⠀⠀⠀
+⠀⠀⣠⣾⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢷⣄⠀⠀⠀
+⠀⣰⡟⠁⠀⢀⣤⠤⠤⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣧⠀⠀
+⣰⡟⠀⠀⠴⠋⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⣤⣄⡀⠀⠀⠀⢻⣧⠀
+⣿⠃⠀⠀⠀⢠⣶⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢆⠀⠀⠈⣿⡀
+⣿⠀⠀⠀⠀⢸⣿⣿⠇⠀⠀⠀⠀⠀⠚⠛⠛⠳⠄⠀⠀⠀⠀⣿⡇
+⣿⡄⠀⠀⠀⠀⠉⠁⠀⠀⢀⣀⣀⠀⠀⠀⣠⠤⢤⡀⢀⣀⠀⣿⠃
+⠹⣧⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⣹⡷⠀⢰⠃⠀⠀⠹⠉⠈⠙⡟⠀
+⠀⠻⣧⡀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣄⠀⠈⢧⠀⠀⠀⠀⠀⣠⠇⠀
+⠀⠀⠙⢷⣄⡀⠀⠀⠀⠀⢠⡶⠿⠋⠀⠀⠈⠳⣄⣀⣤⠞⠁⠀⠀
+⠀⠀⠀⠀⠙⠻⣶⣤⣀⡀⠀⠀⠀⠀⠀⣀⣠⣴⠿⠋⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠛⠿⠿⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+"""
 
 async def kiss_handler(client, message):
-    for frame in KISS_ANIMATION:
-        await smart_edit(message, f"<code>{frame}</code>", 0.6)
+    await smart_edit(message, "💋 **Kiss loading...**", 0.5)
+    await draw_art(message, KISS_ART, header="💋 CHERRY KISS 💋", chunk_size=3)
+    await smart_edit(message, f"<code>{KISS_ART.strip()}</code>\n\n💋❤️ **KISS!** ❤️💋", 1.0)
 
 CAT_ANIMATION = ["🐈",
     "🐈\nWalking...",
@@ -416,6 +416,7 @@ async def help_handler(client, message):
 🔥 **CHERRY USERBOT COMMANDS** 🔥
 
 🐱 `.cat` - Cute Cat Animation
+💋 `.kiss` - Kiss Animation
 🌹 `.rose` - Rose Animation
 💻 `.hacker` - Hacking Animation
 ⚠️ `.error` - System Crash Animation
@@ -433,10 +434,9 @@ async def help_handler(client, message):
 🔨 `.allban <id>` - Ban members (0.5s delay)
 ⚡ `.fastallban <id>` - Fast ban (0.2s - 0.3s delay)
 ☠️ `.end <id>` - Nuke GC (Ban -> Title -> Tag & Pin)
-💋 `.kiss` - Kiss Animation
 🛑 `.stop` - Stop Tasks
 """
-try: await message.edit(text)
+    try: await message.edit(text)
     except:
         try: await client.send_message(message.chat.id, text)
         except: pass
@@ -830,7 +830,7 @@ async def add_session_handler(client, message):
     msg = await message.reply("🔄 Connecting...")
 
     try:
-    new_user = Client(
+        new_user = Client(
             name=f"user_{random.randint(1000, 9999)}",
             api_id=API_ID,
             api_hash=API_HASH,
@@ -843,7 +843,6 @@ async def add_session_handler(client, message):
 
         new_user.add_handler(MessageHandler(help_handler, filters.command("help", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(cat_handler, filters.command("cat", prefixes=".") & filters.me))
-        new_user.add_handler(MessageHandler(kiss_handler, filters.command("kiss", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(rose_handler, filters.command("rose", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(hacker_handler, filters.command("hacker", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(error_handler, filters.command("error", prefixes=".") & filters.me))
@@ -861,12 +860,7 @@ async def add_session_handler(client, message):
         new_user.add_handler(MessageHandler(allban_cmd, filters.command("allban", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(fastallban_cmd, filters.command("fastallban", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(end_cmd, filters.command("end", prefixes=".") & filters.me))
-         new_user.add_handler(
-            MessageHandler(
-                kiss_handler,
-                filters.command("kiss", prefixes=".") & filters.me
-            )
-        )       
+        new_user.add_handler(MessageHandler(kiss_handler, filters.command("kiss", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(stop_cmd,
             filters.command("stop", prefixes=".") & filters.me))
 
