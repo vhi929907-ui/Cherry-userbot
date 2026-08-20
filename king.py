@@ -260,8 +260,8 @@ async def run_spam(client, chat_id, mention, count):
     active_spams[chat_id] = False
 
 # ==================== ART ASSETS ====================
-KISS_ART = r"""
-⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣴⣦⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀
+KISS_ANIMATION = [
+    r"""⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣴⣦⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⣠⣴⠾⠛⠉⠉⠀⠀⠀⠀⠈⠉⠛⠿⣦⣄⠀⠀⠀⠀⠀
 ⠀⠀⣠⣾⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢷⣄⠀⠀⠀
 ⠀⣰⡟⠁⠀⢀⣤⠤⠤⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣧⠀⠀
@@ -274,13 +274,36 @@ KISS_ART = r"""
 ⠀⠀⠙⢷⣄⡀⠀⠀⠀⠀⢠⡶⠿⠋⠀⠀⠈⠳⣄⣀⣤⠞⠁⠀⠀
 ⠀⠀⠀⠀⠙⠻⣶⣤⣀⡀⠀⠀⠀⠀⠀⣀⣠⣴⠿⠋⠁⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠛⠿⠿⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-"""
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"""
+]
 
 async def kiss_handler(client, message):
-    await smart_edit(message, "💋 **Kiss loading...**", 0.5)
-    await draw_art(message, KISS_ART, header="💋 CHERRY KISS 💋", chunk_size=3)
-    await smart_edit(message, f"<code>{KISS_ART.strip()}</code>\n\n💋❤️ **KISS!** ❤️💋", 1.0)
+    for frame in KISS_ANIMATION:
+        await smart_edit(message, f"<code>{frame}</code>", 0.6)
+
+HUG_ART = r"""
+⠀⠀⢀⠤⠒⠈⠉⠉⠁⠒⢄⠀⠀⢀⠀⠀⠀⠀⠀⠀
+⠀⠀⡎⠀⠀⠀⠀⠀⠀⠀⠀⣗⠊⠉⠁⠀⠁⠢⡄⠀
+⡠⠚⠦⣠⡀⢀⠀⢰⡄⣖⣶⡽⠀⠀⠀⠀⠀⠀⠱⠀
+⠡⡀⠀⠞⠙⣆⢿⣿⣿⢟⢫⠃⠀⠀⠀⠀⠀⠀⠀⠁
+⠠⠊⠑⢄⠀⠀⠀⠁⠈⠉⣏⠀⠀⠀⠀⠀⠀⠀⢀⠃
+⡆⠀⠀⠀⠑⢄⡀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⡀⢸⠀
+⠱⠀⠀⠀⠀⢄⢹⠆⠀⢰⣿⠀⠀⠀⠀⠀⣰⣰⡞⠀
+⠀⠱⡀⠀⠀⠀⢎⠒⢄⣈⡇⣆⣀⡀⠀⠴⠻⠋⡇⠀
+⠀⠀⠘⡄⠀⠀⠀⠃⠘⠼⢀⡀⠀⠀⠀⠀⡠⠁⠓⠀
+⠀⠀⠀⡹⠄⠀⢀⣀⡀⠀⠀⠀⠉⠉⡹⣡⠀⠀⠀⠀
+⠀⠀⢠⠃⠀⠀⠜⠀⠀⠀⠉⠉⠀⠀⠙⡄⠀⠀⠀⠀
+⠀⠀⠘⠂⢠⠜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠄⠀⠀⠀
+⠀⠀⢀⡠⡡⠀⡔⠀⠀⠀⠀⠀⠀⠀⠀⢠⠈⠄⠀⠀
+⠀⠀⢻⠜⠀⡜⠀⢀⠏⠀⢀⠀⠀⠀⠀⠀⢃⠘⡄⠀
+⠀⠀⠸⠒⠼⣀⣀⡌⠀⠀⡌⠀⠀⠸⠀⠀⠈⡦⠓⠀
+⠀⠀⠈⡄⠀⠀⡆⠑⠢⠼⢤⡄⠀⠤⠆⢲⠉⠀⠀⠀
+⠀⠀⠀⡇⠀⠀⠘⡀⠀⠀⢸⠰⡀⠀⠀⢸⠀⠀⠀⠀
+"""
+
+async def hug_handler(client, message):
+    await smart_edit(message, "🤗 **Hug incoming...**", 0.5)
+    await draw_art(message, HUG_ART, footer="🤗 **BIG HUG FOR YOU!**")
 
 CAT_ANIMATION = ["🐈",
     "🐈\nWalking...",
@@ -417,6 +440,7 @@ async def help_handler(client, message):
 
 🐱 `.cat` - Cute Cat Animation
 💋 `.kiss` - Kiss Animation
+🤗 `.hug` - Hug Animation
 🌹 `.rose` - Rose Animation
 💻 `.hacker` - Hacking Animation
 ⚠️ `.error` - System Crash Animation
@@ -843,6 +867,8 @@ async def add_session_handler(client, message):
 
         new_user.add_handler(MessageHandler(help_handler, filters.command("help", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(cat_handler, filters.command("cat", prefixes=".") & filters.me))
+        new_user.add_handler(MessageHandler(kiss_handler, filters.command("kiss", prefixes=".") & filters.me))
+        new_user.add_handler(MessageHandler(hug_handler, filters.command("hug", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(rose_handler, filters.command("rose", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(hacker_handler, filters.command("hacker", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(error_handler, filters.command("error", prefixes=".") & filters.me))
@@ -860,7 +886,6 @@ async def add_session_handler(client, message):
         new_user.add_handler(MessageHandler(allban_cmd, filters.command("allban", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(fastallban_cmd, filters.command("fastallban", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(end_cmd, filters.command("end", prefixes=".") & filters.me))
-        new_user.add_handler(MessageHandler(kiss_handler, filters.command("kiss", prefixes=".") & filters.me))
         new_user.add_handler(MessageHandler(stop_cmd,
             filters.command("stop", prefixes=".") & filters.me))
 
